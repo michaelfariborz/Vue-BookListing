@@ -18,9 +18,9 @@ export default {
         return {
             title: 'All Books',
             books: [
-                {title: 'Self-Reliance', author: 'Ralph Waldo Emerson'},
-                {title: 'American Gods', author: 'Neil Gaiman'},
-                {title: 'Amusing Ourselves to Death', author: 'Neil Postman'}
+                {id: 1, title: 'Self-Reliance', author: 'Ralph Waldo Emerson'},
+                {id: 2, title: 'American Gods', author: 'Neil Gaiman'},
+                {id: 3, title: 'Amusing Ourselves to Death', author: 'Neil Postman'}
             ]
         }
     },
@@ -30,7 +30,21 @@ export default {
     },
     methods: {
         appendBook(bookTitle, bookAuthor){
-            this.books.push({title: bookTitle, author: bookAuthor});
+            var newId = this.books[this.books.length - 1].id + 1;
+            this.books.push({id: newId, title: bookTitle, author: bookAuthor});
+        },
+        removeBook(id){
+            console.log("hello");
+            var removeIndex = -1
+            for(var index = 0; index < this.books.length; index++){
+                if(this.books[index].id == id) {
+                    removeIndex = index;
+                    console.log("removeIndex = " + removeIndex);
+                }
+            }
+            if(removeIndex >= 0){
+                this.books.splice(removeIndex);
+            }
         }
     }
 }
